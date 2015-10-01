@@ -13,7 +13,7 @@ var categories = require('./routes/categories');
 
 // Mongo Conection
 var dbName = 'MoviDB';
-var connectionString = 'mongodb://localhost:27017/' + dbName;
+var connectionString = 'mongodb://192.168.1.5:27017/' + dbName;
 mongoose.connect(connectionString);
 
 
