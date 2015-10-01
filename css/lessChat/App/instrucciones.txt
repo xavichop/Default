@@ -4,8 +4,14 @@ El archivo final se debe de llamar main.min.css, debe de estar comprimido, minif
 Comando para compilar con NodeJS: lessc main.less > ..\..\main.min.css -x --clean-css
 
                                     lessc main.less >..\..\main.chat.css -x --clean-css
-                                    lessc bootstrap.less >..\bootstrap.chat.css -x --clean-css
 
+
+                                    Esto vale
+                                    npm install less -g
+                                    npm install -g less-plugin-clean-css
+
+
+                  ----->>>          lessc --clean-css bootstrap.less ..\bootstrap.chat.css
 
 site.less -> estilos generals del sitio
 snap.less -> estilos del menu
