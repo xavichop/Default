@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="MoviApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Una mano a mi ciudad</title>
+    <link rel="stylesheet" href="/css/bootstrap.chat.css">
+
+    <script src="/js/assets/head.min.js"></script>
+    <script src="/js/assets/socket.io-1.3.4.js"></script>
+    <script src='/js/assets/angular.min.js'></script>
+    <script src='/js/assets/socket.min.js'></script>
+    <script src="/js/assets/angular.js"></script>
+    <script src="/js/assets/angular-resource.js"></script>
+    <script src="/js/configs/AppConfigSettings.js"></script>
+    <script src="/js/controllers/loginCtrl.js"></script>
+</head>
+<body data-ng-controller="loginController">
+<div>
+
+    <div class="col-lg-4 col-lg-offset-4" style="margin-top: 10%">
+
+        <div class="container-fluid" data-ng-show='frmModo=="login"'>
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    <h4>Ingreso al sistema
+                        <i class="fa fa-chevron-circle-right"></i>
+
+                        <i class="fa fa-chevron-circle-right"></i>
+
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <form name="formLogin" novalidate data-ng-init="frmLogin.procesado=false"
+                          class="form-horizontal" role="form"
+                          data-ng-submit="Login();">
+                        <fieldset data-ng-disabled="false">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">Usuario:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="text" data-ng-model="username">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">Contraseña:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="password" data-ng-model="password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <input type="submit" class="btn btn-primary" value="Ingresar">
+                            </div>
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+            <div class="row text-center">
+                <input type="button" class="btn btn-primary" value="Crear Cuenta" ng-click="createAccount()">
+            </div>
+        </div>
+
+        <div class="container-fluid" data-ng-show='frmModo=="cuenta"'>
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    <h4>Nueva Cuenta
+                        <i class="fa fa-chevron-circle-right"></i>
+
+                        <i class="fa fa-chevron-circle-right"></i>
+
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <form name="formLogin" novalidate data-ng-init="frmLogin.procesado=false"
+                          class="form-horizontal" role="form"
+                          data-ng-submit="Registrar();">
+                        <fieldset data-ng-disabled="false">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">Nombre de Usuario:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="text" data-ng-model="newusername">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">Nombre:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="text" data-ng-model="name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">Apellido:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="text" data-ng-model="lastname">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">Fecha de Nacimiento:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="date" data-ng-model="birthday">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">Teléfono Celular:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="text" data-ng-model="cellphone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">Sexo:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="text" data-ng-model="sex">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">E-mail:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="email" data-ng-model="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">Contraseña:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="password" data-ng-model="passwordnew">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-xs-5">Repetir contraseña:</label>
+
+                                    <div class="col-xs-7">
+                                        <input type="password" data-ng-model="repeatPasswordnew">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-default" value="Regresar"
+                                           ng-click="Regresar()">
+                                    <input type="submit" class="btn btn-primary" value="Registrar"
+                                           >
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
